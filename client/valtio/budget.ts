@@ -1,7 +1,7 @@
-import { proxy } from "valtio";
+import { proxy, useSnapshot } from "valtio";
 import { BudgetItem } from "../types";
 
-export const budgetData = proxy<{ budget: BudgetItem[] }>({
+const budgetData = proxy<{ budget: BudgetItem[] }>({
   budget: [
     {
       id: "1",
@@ -18,8 +18,12 @@ export const budgetData = proxy<{ budget: BudgetItem[] }>({
   ],
 });
 
+export const useBudgetData = () => {
+  return useSnapshot(budgetData);
+};
+
 const addItem = (item: Omit<BudgetItem, "id">) => {
-  const id = Math.random().toString(36).substr(2, 9);
+  const id = Math.random().toString(36).slice(2, 9);
   budgetData.budget.push({
     ...item,
     id,

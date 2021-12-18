@@ -1,8 +1,7 @@
-import { budgetData } from "./../../valtio/budget";
-import { useSnapshot } from "valtio";
+import { useBudgetData } from "../../valtio/budget";
 
 export const useOverviewData = () => {
-  const data = useSnapshot(budgetData);
+  const data = useBudgetData();
   const income = data.budget
     .filter((item) => item.type === "income")
     .reduce((total, item) => total + item.value, 0);
