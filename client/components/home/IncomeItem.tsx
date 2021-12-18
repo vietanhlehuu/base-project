@@ -11,7 +11,7 @@ const IncomeItem: React.FC<{ data: BudgetItem }> = ({ data }) => {
   return (
     <div className="group grid grid-cols-[1fr_auto] gap-2 border-t last:border-b border-gray-300 p-4 even:bg-gradient-to-r from-white via-gray-100 to-white items-center relative overflow-hidden">
       <p>{data.description}</p>
-      <p className="text-income">-{data.value}</p>
+      <p className="text-income">+{data.value}</p>
       <div className="absolute top-0 right-0 grid items-center h-full grid-flow-col gap-2 px-2 transition-all duration-200 translate-x-full bg-white group-hover:translate-x-0">
         <i
           className="w-8 cursor-pointer hover:opacity-80"

@@ -1,10 +1,13 @@
 import React from "react";
-import { useBudgetData } from "../../hooks/home/useBudgetData";
+import { useBudgetList } from "../../hooks/home/useBudgetData";
+import { useOverviewData } from "../../hooks/home/useOverviewData";
 import ExpenseItem from "./ExpenseItem";
 import IncomeItem from "./IncomeItem";
 
 const BudgetList: React.FC = () => {
-  const { expenseList, incomeList, totalIncome } = useBudgetData();
+  const { income: totalIncome } = useOverviewData();
+  const { expenseList, incomeList } = useBudgetList();
+
   return (
     <div className="grid max-w-5xl grid-cols-2 gap-4 mx-auto">
       <div>
