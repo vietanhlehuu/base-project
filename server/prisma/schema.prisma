@@ -1,0 +1,35 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+generator typegraphql {
+  provider = "typegraphql-prisma"
+  output   = "../src/generated/type-graphql"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum BudgetType {
+  INCOME
+  EXPENSE
+}
+
+model Budget {
+  id          String     @id @default(uuid())
+  description String
+  type        BudgetType
+  value       Int
+  owner       User       @relation(fields: [userId], references: [id])
+  userId      String
+}
+
+model User {
+  id       String   @id @default(uuid())
+  username String   @unique
+  /// @TypeGraphQL.omit(output: true)
+  password String
+  budgets  Budget[]
+}
